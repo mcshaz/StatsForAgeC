@@ -7,6 +7,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "StatsForAgeC", "StatsForAge
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UnitTestStatsForAgeC", "UnitTestStatsForAgeC\UnitTestStatsForAgeC.vcxproj", "{249F578C-E134-4D11-A297-B921EB754307}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "StataAnthropometry", "StataAnthropometry\StataAnthropometry.vcxproj", "{39DF00DB-C0E5-4447-8A79-6CC110264143}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -21,6 +23,10 @@ Global
 		{249F578C-E134-4D11-A297-B921EB754307}.Debug|Win32.Build.0 = Debug|Win32
 		{249F578C-E134-4D11-A297-B921EB754307}.Release|Win32.ActiveCfg = Release|Win32
 		{249F578C-E134-4D11-A297-B921EB754307}.Release|Win32.Build.0 = Release|Win32
+		{39DF00DB-C0E5-4447-8A79-6CC110264143}.Debug|Win32.ActiveCfg = Debug|Win32
+		{39DF00DB-C0E5-4447-8A79-6CC110264143}.Debug|Win32.Build.0 = Debug|Win32
+		{39DF00DB-C0E5-4447-8A79-6CC110264143}.Release|Win32.ActiveCfg = Release|Win32
+		{39DF00DB-C0E5-4447-8A79-6CC110264143}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
