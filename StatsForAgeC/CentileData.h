@@ -44,13 +44,14 @@ namespace StatsForAge
 	class STATSFORAGE_API GenderRange
 	{
 	public:
-		GenderRange(const AgeRange& maleRange, const AgeRange& femaleRange) : maleRange_(maleRange), femaleRange_(femaleRange){};
-		GenderRange(const int& min, const int& max) : maleRange_(AgeRange(min, max)), femaleRange_(AgeRange(min, max)){};
-		AgeRange GetMaleRange(void) const;
-		AgeRange GetFemaleRange(void) const;
+		GenderRange(AgeRange* maleRange, AgeRange* femaleRange) : maleRange_(maleRange), femaleRange_(femaleRange){};
+		GenderRange(const int& min, const int& max);
+		AgeRange GetMaleRange(void);
+		AgeRange GetFemaleRange(void);
+		~GenderRange(void);
 	private:
-		const AgeRange& maleRange_;
-		const AgeRange& femaleRange_;
+		AgeRange* maleRange_;
+		AgeRange* femaleRange_;
 		//do I need a destructor anywhere?
 	};
 

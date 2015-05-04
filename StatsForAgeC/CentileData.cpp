@@ -87,10 +87,18 @@ namespace StatsForAge
             .LinearInterpolate(LMSForAgeMonths(nextAge, isMale), lookupTotalAge - (double)lookupAge);
 	};
 
-	AgeRange GenderRange::GetMaleRange(void) const { return maleRange_; }
-	AgeRange GenderRange::GetFemaleRange(void) const { return femaleRange_; }
+	GenderRange::GenderRange(const int& min, const int& max){
+		maleRange_ = femaleRange_ = &AgeRange(min, max);
+	}
+	GenderRange::~GenderRange(void){
+		//once again deleting pointer which may not be ours
+		delete maleRange_;
+		delete femaleRange_;
+	}
+	AgeRange GenderRange::GetMaleRange(void) { return *maleRange_; }
+	AgeRange GenderRange::GetFemaleRange(void) { return *femaleRange_; }
 
-	AgeRange::AgeRange(const int min, const int max) : min_(min), max_(max)
+	AgeRange::AgeRange(const int& min, const int& max) : min_(min), max_(max)
     {
         if (min < 0) { throw std::out_of_range("min must be >=0"); }
 		if (max < min) { throw std::out_of_range("max must be >= min"); }
