@@ -5,6 +5,31 @@
 
 namespace StatsForAge
 {
+	AgeRange::AgeRange(const int min, const int max) : min_(min), max_(max)
+	{
+		if (min < 0) { throw std::out_of_range("min must be >=0"); }
+		if (max < min) { throw std::out_of_range("max must be >= min"); }
+	}
+	int AgeRange::GetMin(void) const { return min_; }
+	int AgeRange::GetMax(void) const { return max_; }
+
+	GenderRange::GenderRange(const int min, const int max){
+		maleRange_ = femaleRange_ = &AgeRange(min, max);
+	}
+
+	GenderRange::GenderRange(AgeRange* maleRange, AgeRange* femaleRange){
+		maleRange = maleRange;
+		femaleRange_ = femaleRange;
+	}
+
+	GenderRange::~GenderRange(void){
+		//once again deleting pointer which may not be ours
+		delete maleRange_;
+		delete femaleRange_;
+	}
+	AgeRange GenderRange::GetMaleRange(void) { return *maleRange_; }
+	AgeRange GenderRange::GetFemaleRange(void) { return *femaleRange_; }
+
 	CentileData::~CentileData()
 	{
 		//these can be injected in, so we might not be the original instantiator of what we are deleting, however in its current form this will always work work
@@ -87,22 +112,4 @@ namespace StatsForAge
             .LinearInterpolate(LMSForAgeMonths(nextAge, isMale), lookupTotalAge - (double)lookupAge);
 	};
 
-	GenderRange::GenderRange(const int& min, const int& max){
-		maleRange_ = femaleRange_ = &AgeRange(min, max);
-	}
-	GenderRange::~GenderRange(void){
-		//once again deleting pointer which may not be ours
-		delete maleRange_;
-		delete femaleRange_;
-	}
-	AgeRange GenderRange::GetMaleRange(void) { return *maleRange_; }
-	AgeRange GenderRange::GetFemaleRange(void) { return *femaleRange_; }
-
-	AgeRange::AgeRange(const int& min, const int& max) : min_(min), max_(max)
-    {
-        if (min < 0) { throw std::out_of_range("min must be >=0"); }
-		if (max < min) { throw std::out_of_range("max must be >= min"); }
-    }
-	int AgeRange::GetMin(void) const { return min_; }
-	int AgeRange::GetMax(void) const { return max_; }
 }
