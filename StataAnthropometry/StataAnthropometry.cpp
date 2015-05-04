@@ -9,11 +9,11 @@
 STDLL stata_call(int argc, char *argv[]) {
 	using namespace StatsForAge;
 	if (SF_nvars() != 5) {
-		return(102);  	    // not enough variables specified
+		return 102;  	    // not enough variables specified
 	}
 
 	if (argc != 1){
-		return(198); //wrong number of arguments
+		return 198; //wrong number of arguments
 	}
 
 	CentileData* statData;
@@ -36,7 +36,7 @@ STDLL stata_call(int argc, char *argv[]) {
 	}
 	else
 	{
-		return(198); //unrecognised argument
+		return 198; //unrecognised argument
 	}
 
 	std::stringstream ss;
@@ -52,7 +52,7 @@ STDLL stata_call(int argc, char *argv[]) {
 	}
 	ss << " _newline Values within these ranges are interpolated, and outside calculated as per the closest datapoint.";
 
-	char* chr = strdup(ss.str().c_str()); //heading into C code, accepting char* - i think manual memory management called for
+	char* chr = _strdup(ss.str().c_str()); //heading into C code, accepting char* - i think manual memory management called for
 	SF_display(chr); 
 	free(chr);
 
@@ -76,4 +76,5 @@ STDLL stata_call(int argc, char *argv[]) {
 			if (rc) { return(rc); }
 		}
 	}
+	return 0;
 }
