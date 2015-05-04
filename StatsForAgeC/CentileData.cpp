@@ -23,7 +23,7 @@ namespace StatsForAge
 	}
 
 	GenderRange::~GenderRange(void){
-		//once again deleting pointer which may not be ours
+		//deleting pointer which may not be ours if injected
 		delete maleRange_;
 		delete femaleRange_;
 	}
@@ -39,7 +39,7 @@ namespace StatsForAge
 	}
 	bool CentileData::IsDataAvailable(double daysOfAge, bool isMale, double totalWeeksGestAtBirth) const
     {
-        return (isMale ? gestAgeRange_->GetMaleRange() : gestAgeRange_->GetFemaleRange()).GetMin <= (int)(totalWeeksGestAtBirth + daysOfAge / 7.0);
+        return (isMale ? gestAgeRange_->GetMaleRange() : gestAgeRange_->GetFemaleRange()).GetMin() <= (int)(totalWeeksGestAtBirth + daysOfAge / 7.0);
     }
 	double CentileData::CumSnormForAge(double value, double daysOfAge, bool isMale, double totalWeeksGestAtBirth) const
     {
@@ -102,7 +102,7 @@ namespace StatsForAge
         }
         lookupTotalAge = (daysOfAge + totalWeeksGestAtBirth - TermGestation)/DaysPerMonth;
         lookupAge = (int)(lookupTotalAge + roundingFactor);
-        maxVal = (isMale ? ageMonthsRange_->GetMaleRange() : ageMonthsRange_->GetFemaleRange()).GetMax;
+        maxVal = (isMale ? ageMonthsRange_->GetMaleRange() : ageMonthsRange_->GetFemaleRange()).GetMax();
         if (lookupAge >= maxVal) 
         {
             return LMSForAgeMonths(maxVal, isMale); 

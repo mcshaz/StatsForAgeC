@@ -2,7 +2,7 @@
 #include "UKCentileImplementations.h"
 namespace StatsForAge
 {
-	UKHeadCircumferenceData::UKHeadCircumferenceData(void) : CentileData(nullptr, nullptr, &GenderRange(AgeRange(3, 216), AgeRange(3, 204)))
+	UKHeadCircumferenceData::UKHeadCircumferenceData(void) : CentileData(nullptr, nullptr, new GenderRange(new AgeRange(3, 216), new AgeRange(3, 204)))
 	{
 	}
 	LMS UKHeadCircumferenceData::LMSForGestAge(int gestAgeWeeks, bool isMale) const
