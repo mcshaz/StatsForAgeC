@@ -15,10 +15,15 @@ namespace StatsForAge
 	class STATSFORAGE_API AgeRange
 	{
 	public:
-		AgeRange(const int min, const int max);
+		AgeRange(const int min, const int max) : min_(min), max_(max)
+		{
+			if (min < 0) { throw std::out_of_range("min must be >=0"); }
+			if (max < min) { throw std::out_of_range("max must be >= min"); }
+		};
 		int GetMin(void) const;
 		int GetMax(void) const;
 	private:
+		AgeRange() : min_(0), max_(0) {}; //private empty constructor - i.e. should not be used
 		const int min_;
 		const int max_;
 	};
@@ -32,6 +37,7 @@ namespace StatsForAge
 		AgeRange GetFemaleRange(void);
 		~GenderRange(void);
 	private:
+		GenderRange(){}; //private default constructor - should not be used
 		AgeRange* maleRange_;
 		AgeRange* femaleRange_;
 		//do I need a destructor anywhere?

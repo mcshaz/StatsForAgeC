@@ -5,30 +5,23 @@
 
 namespace StatsForAge
 {
-	AgeRange::AgeRange(const int min, const int max) : min_(min), max_(max)
-	{
-		if (min < 0) { throw std::out_of_range("min must be >=0"); }
-		if (max < min) { throw std::out_of_range("max must be >= min"); }
-	}
 	int AgeRange::GetMin(void) const { return min_; }
 	int AgeRange::GetMax(void) const { return max_; }
+	AgeRange GenderRange::GetMaleRange(void) { return *maleRange_; }
+	AgeRange GenderRange::GetFemaleRange(void) { return *femaleRange_; }
 
 	GenderRange::GenderRange(const int min, const int max){
 		maleRange_ = femaleRange_ = &AgeRange(min, max);
 	}
-
 	GenderRange::GenderRange(AgeRange* maleRange, AgeRange* femaleRange){
-		maleRange = maleRange;
+		maleRange_ = maleRange;
 		femaleRange_ = femaleRange;
 	}
-
 	GenderRange::~GenderRange(void){
 		//deleting pointer which may not be ours if injected
 		delete maleRange_;
 		delete femaleRange_;
 	}
-	AgeRange GenderRange::GetMaleRange(void) { return *maleRange_; }
-	AgeRange GenderRange::GetFemaleRange(void) { return *femaleRange_; }
 
 	CentileData::~CentileData()
 	{
