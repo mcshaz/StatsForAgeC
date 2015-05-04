@@ -17,6 +17,7 @@ namespace StatsForAge
 
 	public:
 		CentileData(GenderRange* gestAgeRange = nullptr, GenderRange *ageWeeksRange = nullptr, GenderRange *ageMonthsRange = nullptr);
+		~CentileData(void);
 		GenderRange GetGestAgeRange(void) const;
 		GenderRange GetAgeWeeksRange(void) const;
 		GenderRange GetAgeMonthsRange(void) const;
@@ -31,25 +32,26 @@ namespace StatsForAge
 		bool IsDataAvailable(double daysOfAge, bool isMale, double totalWeeksGestAtBirth = TermGestation) const;
 
 	private:
-		GenderRange gestAgeRange_;
-		GenderRange ageWeeksRange_;
-		GenderRange ageMonthsRange_;
+		GenderRange* gestAgeRange_;
+		GenderRange* ageWeeksRange_;
+		GenderRange* ageMonthsRange_;
 
 	};
 
 	struct STATSFORAGE_API GenderRange
 	{
-		GenderRange(AgeRange& maleRange, AgeRange& femaleRange) : MaleRange(maleRange), FemaleRange(femaleRange) {}
+		GenderRange(AgeRange maleRange, AgeRange femaleRange) : MaleRange(maleRange), FemaleRange(femaleRange) {}
 		GenderRange(int min, int max) : MaleRange(AgeRange(min, max)), FemaleRange(AgeRange(min, max)){}
-		AgeRange const MaleRange;
-		AgeRange const FemaleRange;
+		const AgeRange MaleRange;
+		const AgeRange FemaleRange;
+		//do I need a destructor anywhere?
 	};
 
 	struct STATSFORAGE_API AgeRange
 	{
 		AgeRange(const int min, const int max) : Min(min), Max(max){};
-		int const Min;
-		int const Max;
+		const int Min;
+		const int Max;
 	};
 }
 #endif
