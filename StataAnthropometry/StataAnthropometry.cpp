@@ -41,14 +41,14 @@ STDLL stata_call(int argc, char *argv[]) {
 
 	std::stringstream ss;
 	ss << argv[0] << " data is available from ";
-	if (statData->GetGestAgeRange().MaleRange.Min == statData->GetGestAgeRange().FemaleRange.Min &&  statData->GetAgeMonthsRange().MaleRange.Max == statData->GetAgeMonthsRange().FemaleRange.Max)
+	if (statData->GetGestAgeRange().GetMaleRange().GetMin() == statData->GetGestAgeRange().GetFemaleRange().GetMin() &&  statData->GetAgeMonthsRange().GetMaleRange().GetMax() == statData->GetAgeMonthsRange().GetFemaleRange().GetMax())
 	{
-		ss << statData->GetGestAgeRange().MaleRange.Min << " weeks gestation to " << statData->GetAgeMonthsRange().MaleRange.Max / 12 << " years";
+		ss << statData->GetGestAgeRange().GetMaleRange().GetMin() << " weeks gestation to " << statData->GetAgeMonthsRange().GetMaleRange().GetMax() / 12 << " years";
 	}
 	else
 	{
-		ss << "female (" << statData->GetGestAgeRange().FemaleRange.Min << " weeks gestation to " << statData->GetAgeMonthsRange().FemaleRange.Max / 12 << " years)"
-			<< " male (" << statData->GetGestAgeRange().MaleRange.Min << " weeks gestation to " << statData->GetAgeMonthsRange().MaleRange.Max / 12 << " years)";
+		ss << "female (" << statData->GetGestAgeRange().GetFemaleRange().GetMin() << " weeks gestation to " << statData->GetAgeMonthsRange().GetFemaleRange().GetMax() / 12 << " years)"
+			<< " male (" << statData->GetGestAgeRange().GetMaleRange().GetMin() << " weeks gestation to " << statData->GetAgeMonthsRange().GetMaleRange().GetMax() / 12 << " years)";
 	}
 	ss << " _newline Values within these ranges are interpolated, and outside calculated as per the closest datapoint.";
 

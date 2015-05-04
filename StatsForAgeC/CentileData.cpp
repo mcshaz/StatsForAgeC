@@ -5,22 +5,16 @@
 
 namespace StatsForAge
 {
-	CentileData::CentileData(GenderRange* gestAgeRange, GenderRange* ageWeeksRange, GenderRange* ageMonthsRange)
-	{
-		gestAgeRange_ = (gestAgeRange == nullptr) ? &GenderRange(23, 43) : gestAgeRange;
-		ageWeeksRange_ = (ageWeeksRange == nullptr) ? &GenderRange(4, 13) : gestAgeRange;
-		ageMonthsRange_ = (ageMonthsRange == nullptr) ? &GenderRange(3, 240) : gestAgeRange;
-	};
 	CentileData::~CentileData()
 	{
-		//these can be injected in, so we might not be the owner, however in its current form this will work
+		//these can be injected in, so we might not be the original instantiator of what we are deleting, however in its current form this will always work work
 		delete gestAgeRange_;
 		delete ageWeeksRange_;
 		delete ageMonthsRange_;
 	}
 	bool CentileData::IsDataAvailable(double daysOfAge, bool isMale, double totalWeeksGestAtBirth) const
     {
-        return (isMale ? gestAgeRange_->MaleRange : gestAgeRange_->FemaleRange).Min <= (int)(totalWeeksGestAtBirth + daysOfAge / 7.0);
+        return (isMale ? gestAgeRange_->GetMaleRange() : gestAgeRange_->GetFemaleRange()).GetMin <= (int)(totalWeeksGestAtBirth + daysOfAge / 7.0);
     }
 	double CentileData::CumSnormForAge(double value, double daysOfAge, bool isMale, double totalWeeksGestAtBirth) const
     {
@@ -52,7 +46,7 @@ namespace StatsForAge
         }
         double lookupTotalAge = daysOfAge/7.0 + totalWeeksGestAtBirth;
         int lookupAge = (int)(lookupTotalAge+roundingFactor);
-        int maxVal = isMale?gestAgeRange_->MaleRange.Max:gestAgeRange_->FemaleRange.Max;
+        int maxVal = (isMale?gestAgeRange_->GetMaleRange():gestAgeRange_->GetFemaleRange()).GetMax();
         if (lookupAge == maxVal)
         {
             int nextLookupAge = lookupAge + 1;
@@ -67,7 +61,7 @@ namespace StatsForAge
         }
         lookupTotalAge -= TermGestation;
         lookupAge = (int)(lookupTotalAge + roundingFactor);
-        maxVal = isMale ? ageWeeksRange_->MaleRange.Max : ageWeeksRange_->FemaleRange.Max;
+        maxVal = (isMale ? ageWeeksRange_->GetMaleRange() : ageWeeksRange_->GetFemaleRange()).GetMax();
         if (lookupAge == maxVal)
         {
             double ageMonthsLookup = ceil((daysOfAge + totalWeeksGestAtBirth - TermGestation) / DaysPerMonth);
@@ -83,7 +77,7 @@ namespace StatsForAge
         }
         lookupTotalAge = (daysOfAge + totalWeeksGestAtBirth - TermGestation)/DaysPerMonth;
         lookupAge = (int)(lookupTotalAge + roundingFactor);
-        maxVal = (isMale ? ageMonthsRange_->MaleRange.Max : ageMonthsRange_->FemaleRange.Max);
+        maxVal = (isMale ? ageMonthsRange_->GetMaleRange() : ageMonthsRange_->GetFemaleRange()).GetMax;
         if (lookupAge >= maxVal) 
         {
             return LMSForAgeMonths(maxVal, isMale); 
@@ -93,9 +87,14 @@ namespace StatsForAge
             .LinearInterpolate(LMSForAgeMonths(nextAge, isMale), lookupTotalAge - (double)lookupAge);
 	};
 
-    AgeRange::AgeRange(const int min, const int max) : Min(min), Max(max)
+	AgeRange GenderRange::GetMaleRange(void) const { return maleRange_; }
+	AgeRange GenderRange::GetFemaleRange(void) const { return femaleRange_; }
+
+	AgeRange::AgeRange(const int min, const int max) : min_(min), max_(max)
     {
         if (min < 0) { throw std::out_of_range("min must be >=0"); }
 		if (max < min) { throw std::out_of_range("max must be >= min"); }
     }
+	int AgeRange::GetMin(void) const { return min_; }
+	int AgeRange::GetMax(void) const { return max_; }
 }

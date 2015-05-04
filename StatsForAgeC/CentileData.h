@@ -16,8 +16,6 @@ namespace StatsForAge
 	{
 
 	public:
-		CentileData(GenderRange* gestAgeRange = nullptr, GenderRange *ageWeeksRange = nullptr, GenderRange *ageMonthsRange = nullptr);
-		~CentileData(void);
 		GenderRange GetGestAgeRange(void) const;
 		GenderRange GetAgeWeeksRange(void) const;
 		GenderRange GetAgeMonthsRange(void) const;
@@ -26,6 +24,11 @@ namespace StatsForAge
 		LMS LMSForAge(double daysOfAge, bool isMale, double totalWeeksGestAtBirth = TermGestation) const;
 
 	protected:
+		CentileData(GenderRange* gestAgeRange = nullptr, GenderRange* ageWeeksRange = nullptr, GenderRange* ageMonthsRange = nullptr) :
+			gestAgeRange_((gestAgeRange == nullptr) ? &GenderRange(23, 43) : gestAgeRange), 
+			ageWeeksRange_((ageWeeksRange == nullptr) ? &GenderRange(4, 13) : gestAgeRange), 
+			ageMonthsRange_((ageMonthsRange == nullptr) ? &GenderRange(3, 240) : gestAgeRange){};
+		~CentileData(void);
 		virtual LMS LMSForGestAge(int gestAgeWeeks, bool isMale) const;
 		virtual LMS LMSForAgeWeeks(int ageWeeks, bool isMale) const;
 		virtual LMS LMSForAgeMonths(int ageMonths, bool isMale) const;
@@ -38,20 +41,28 @@ namespace StatsForAge
 
 	};
 
-	struct STATSFORAGE_API GenderRange
+	class STATSFORAGE_API GenderRange
 	{
-		GenderRange(AgeRange maleRange, AgeRange femaleRange) : MaleRange(maleRange), FemaleRange(femaleRange) {}
-		GenderRange(int min, int max) : MaleRange(AgeRange(min, max)), FemaleRange(AgeRange(min, max)){}
-		const AgeRange MaleRange;
-		const AgeRange FemaleRange;
+	public:
+		GenderRange(const AgeRange& maleRange, const AgeRange& femaleRange) : maleRange_(maleRange), femaleRange_(femaleRange){};
+		GenderRange(const int& min, const int& max) : maleRange_(AgeRange(min, max)), femaleRange_(AgeRange(min, max)){};
+		AgeRange GetMaleRange(void) const;
+		AgeRange GetFemaleRange(void) const;
+	private:
+		const AgeRange& maleRange_;
+		const AgeRange& femaleRange_;
 		//do I need a destructor anywhere?
 	};
 
-	struct STATSFORAGE_API AgeRange
+	class STATSFORAGE_API AgeRange
 	{
-		AgeRange(const int min, const int max) : Min(min), Max(max){};
-		const int Min;
-		const int Max;
+	public:
+		AgeRange(const int& min, const int& max) : min_(min), max_(max){};
+		int GetMin(void) const;
+		int GetMax(void) const;
+	private:
+		const int& min_;
+		const int& max_;
 	};
 }
 #endif
