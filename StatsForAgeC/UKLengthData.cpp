@@ -8,7 +8,7 @@ namespace StatsForAge
 	UKLengthData::UKLengthData() : CentileData(&GenderRange(25, 43), nullptr, nullptr)
     {
     }
-	LMS UKLengthData::LMSForGestAge(int gestAgeWeeks, bool isMale)
+	LMS UKLengthData::LMSForGestAge(int gestAgeWeeks, bool isMale) const
     {
         if (isMale)
         {
@@ -101,7 +101,7 @@ namespace StatsForAge
         }
     }
 
-	LMS UKLengthData::LMSForAgeWeeks(int ageWeeks, bool isMale)
+	LMS UKLengthData::LMSForAgeWeeks(int ageWeeks, bool isMale) const
     {
         if (isMale)
         {
@@ -158,7 +158,7 @@ namespace StatsForAge
         }
     }
 
-	LMS UKLengthData::LMSForAgeMonths(int ageMonths, bool isMale)
+	LMS UKLengthData::LMSForAgeMonths(int ageMonths, bool isMale) const
     {
         if (isMale)
         {

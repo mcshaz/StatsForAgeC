@@ -6,7 +6,7 @@ namespace StatsForAge
 	UKBMIData::UKBMIData() : CentileData(&GenderRange(43, 43),nullptr,nullptr)
     {
     }
-	LMS UKBMIData::LMSForGestAge(int gestAgeWeeks, bool isMale)
+	LMS UKBMIData::LMSForGestAge(int gestAgeWeeks, bool isMale) const
     {
         if (isMale)
         {
@@ -28,7 +28,7 @@ namespace StatsForAge
         }
 	};
 
-    LMS UKBMIData:: LMSForAgeWeeks(int ageWeeks, bool isMale)
+    LMS UKBMIData:: LMSForAgeWeeks(int ageWeeks, bool isMale) const
     {
         if (isMale)
         {
@@ -84,7 +84,7 @@ namespace StatsForAge
                 throw  std::out_of_range("ageWeeks");
         }
     }
-    LMS UKBMIData:: LMSForAgeMonths(int ageMonths, bool isMale)
+    LMS UKBMIData:: LMSForAgeMonths(int ageMonths, bool isMale) const
     {
         if (isMale)
         {

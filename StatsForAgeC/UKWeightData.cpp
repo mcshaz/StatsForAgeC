@@ -3,7 +3,7 @@
 
 
 namespace StatsForAge{
-	LMS UKWeightData::LMSForGestAge(int gestAgeWeeks, bool isMale)
+	LMS UKWeightData::LMSForGestAge(int gestAgeWeeks, bool isMale) const
     {
         if (isMale)
         {
@@ -103,7 +103,7 @@ namespace StatsForAge{
 				throw  std::out_of_range("gestAgeWeeks");
         }
 	};
-	LMS UKWeightData::LMSForAgeWeeks(int ageWeeks, bool isMale)
+	LMS UKWeightData::LMSForAgeWeeks(int ageWeeks, bool isMale) const
     {
         if (isMale)
         {
@@ -159,7 +159,7 @@ namespace StatsForAge{
 				throw  std::out_of_range("ageWeeks");
         }
 	};
-	LMS UKWeightData::LMSForAgeMonths(int ageMonths, bool isMale)
+	LMS UKWeightData::LMSForAgeMonths(int ageMonths, bool isMale) const
     {
         if (isMale)
         {

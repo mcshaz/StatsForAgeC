@@ -5,7 +5,7 @@ namespace StatsForAge
 	UKHeadCircumferenceData::UKHeadCircumferenceData() : CentileData(nullptr, nullptr, &GenderRange(AgeRange(3, 216),AgeRange(3, 204)))
 	{
 	}
-	LMS UKHeadCircumferenceData::LMSForGestAge(int gestAgeWeeks, bool isMale)
+	LMS UKHeadCircumferenceData::LMSForGestAge(int gestAgeWeeks, bool isMale) const
     {
         if (isMale)
         {
@@ -106,7 +106,7 @@ namespace StatsForAge
         }
     }
 
-	LMS UKHeadCircumferenceData::LMSForAgeWeeks(int ageWeeks, bool isMale)
+	LMS UKHeadCircumferenceData::LMSForAgeWeeks(int ageWeeks, bool isMale) const
     {
         if (isMale)
         {
@@ -163,7 +163,7 @@ namespace StatsForAge
         }
     }
 
-	LMS UKHeadCircumferenceData::LMSForAgeMonths(int ageMonths, bool isMale)
+	LMS UKHeadCircumferenceData::LMSForAgeMonths(int ageMonths, bool isMale) const
     {
         if (isMale)
         {
