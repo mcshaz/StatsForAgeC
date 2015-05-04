@@ -54,9 +54,9 @@ namespace StatsForAge
 			ageWeeksRange_((ageWeeksRange == nullptr) ? &GenderRange(4, 13) : gestAgeRange), 
 			ageMonthsRange_((ageMonthsRange == nullptr) ? &GenderRange(3, 240) : gestAgeRange){};
 		~CentileData(void);
-		virtual LMS LMSForGestAge(int gestAgeWeeks, bool isMale) const;
-		virtual LMS LMSForAgeWeeks(int ageWeeks, bool isMale) const;
-		virtual LMS LMSForAgeMonths(int ageMonths, bool isMale) const;
+		virtual LMS LMSForGestAge(int gestAgeWeeks, bool isMale) const=0;
+		virtual LMS LMSForAgeWeeks(int ageWeeks, bool isMale) const=0;
+		virtual LMS LMSForAgeMonths(int ageMonths, bool isMale) const=0;
 		bool IsDataAvailable(double daysOfAge, bool isMale, double totalWeeksGestAtBirth = TermGestation) const;
 
 	private:

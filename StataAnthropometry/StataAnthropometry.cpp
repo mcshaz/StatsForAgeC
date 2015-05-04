@@ -70,7 +70,7 @@ STDLL stata_call(int argc, char *argv[]) {
 			rc = SF_vdata(4, j, &weeksGestationAtBirth);
 			if (rc) { return(rc); }
 
-			z = statData->ZForAge(weightInKg, daysOfAge, isMale, weeksGestationAtBirth);
+			z = statData->ZForAge(weightInKg, daysOfAge, isMale != 0, weeksGestationAtBirth);
 			rc = SF_vstore(5, j, z);
 
 			if (rc) { return(rc); }
