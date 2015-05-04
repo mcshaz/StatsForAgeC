@@ -52,7 +52,7 @@ STDLL stata_call(int argc, char *argv[]) {
 	}
 	ss << " _newline Values within these ranges are interpolated, and outside calculated as per the closest datapoint.";
 
-	char* chr = strdup(ss.str().c_str); //heading into C code, accepting char* - i think manual memory management called for
+	char* chr = strdup(ss.str().c_str()); //heading into C code, accepting char* - i think manual memory management called for
 	SF_display(chr); 
 	free(chr);
 

@@ -47,23 +47,24 @@ namespace StatsForAge
 		double CumSnormForAge(double value, double daysOfAge, bool isMale, double totalWeeksGestAtBirth = TermGestation) const;
 		double ZForAge(double value, double daysOfAge, bool isMale, double totalWeeksGestAtBirth = TermGestation) const;
 		LMS LMSForAge(double daysOfAge, bool isMale, double totalWeeksGestAtBirth = TermGestation) const;
+		void SetThrowUnderRange(bool value);
 
 	protected:
 		CentileData(GenderRange* gestAgeRange = nullptr, GenderRange* ageWeeksRange = nullptr, GenderRange* ageMonthsRange = nullptr) :
-			gestAgeRange_((gestAgeRange == nullptr) ? &GenderRange(23, 43) : gestAgeRange), 
-			ageWeeksRange_((ageWeeksRange == nullptr) ? &GenderRange(4, 13) : gestAgeRange), 
-			ageMonthsRange_((ageMonthsRange == nullptr) ? &GenderRange(3, 240) : gestAgeRange){};
+			gestAgeRange_((gestAgeRange == nullptr) ? &GenderRange(23, 43) : gestAgeRange),
+			ageWeeksRange_((ageWeeksRange == nullptr) ? &GenderRange(4, 13) : gestAgeRange),
+			ageMonthsRange_((ageMonthsRange == nullptr) ? &GenderRange(3, 240) : gestAgeRange),
+			throwUnderRange_(false){};
 		~CentileData(void);
 		virtual LMS LMSForGestAge(int gestAgeWeeks, bool isMale) const=0;
 		virtual LMS LMSForAgeWeeks(int ageWeeks, bool isMale) const=0;
 		virtual LMS LMSForAgeMonths(int ageMonths, bool isMale) const=0;
-		bool IsDataAvailable(double daysOfAge, bool isMale, double totalWeeksGestAtBirth = TermGestation) const;
 
 	private:
 		GenderRange* gestAgeRange_;
 		GenderRange* ageWeeksRange_;
 		GenderRange* ageMonthsRange_;
-
+		bool throwUnderRange_;
 	};
 }
 #endif

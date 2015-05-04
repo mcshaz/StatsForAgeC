@@ -37,10 +37,9 @@ namespace StatsForAge
 		delete ageWeeksRange_;
 		delete ageMonthsRange_;
 	}
-	bool CentileData::IsDataAvailable(double daysOfAge, bool isMale, double totalWeeksGestAtBirth) const
-    {
-        return (isMale ? gestAgeRange_->GetMaleRange() : gestAgeRange_->GetFemaleRange()).GetMin() <= (int)(totalWeeksGestAtBirth + daysOfAge / 7.0);
-    }
+
+	void CentileData::SetThrowUnderRange(bool value){ throwUnderRange_ = value; }
+
 	double CentileData::CumSnormForAge(double value, double daysOfAge, bool isMale, double totalWeeksGestAtBirth) const
     {
         return LMSForAge(daysOfAge, isMale, totalWeeksGestAtBirth).CumNormalDistribution(value);
@@ -53,10 +52,6 @@ namespace StatsForAge
 
 	LMS CentileData::LMSForAge(double daysOfAge, bool isMale, double totalWeeksGestAtBirth) const
     {
-        if (!IsDataAvailable(daysOfAge, isMale, totalWeeksGestAtBirth))
-        {
-            throw std::out_of_range("totalWeeksGestAtBirth less than GestAgeRange");
-        }
         if (totalWeeksGestAtBirth > MaximumGestationalCorrection)
         {
             totalWeeksGestAtBirth = MaximumGestationalCorrection;
@@ -80,6 +75,13 @@ namespace StatsForAge
         }
         if (lookupAge < maxVal)
         {
+			int min = (isMale ? gestAgeRange_->GetMaleRange() : gestAgeRange_->GetFemaleRange()).GetMin();
+			if (lookupAge < min) {
+				if (throwUnderRange_){
+					throw std::out_of_range("age less than data range. SetThrowUnderRange to false (default) to avoid this exception");
+				} 
+				lookupAge = min; 
+			}
             int nextLookupAge = lookupAge + 1;
             return LMSForGestAge(lookupAge, isMale)
                 .LinearInterpolate(LMSForGestAge(nextLookupAge, isMale), lookupTotalAge - (double)lookupAge);
