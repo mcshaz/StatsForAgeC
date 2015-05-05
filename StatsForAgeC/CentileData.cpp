@@ -17,11 +17,6 @@ namespace StatsForAge
 		maleRange_ = maleRange;
 		femaleRange_ = femaleRange;
 	}
-	GenderRange::~GenderRange(void){
-		//deleting pointer which may not be ours if injected
-		delete maleRange_;
-		delete femaleRange_;
-	}
 
 	CentileData::~CentileData()
 	{

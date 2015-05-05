@@ -35,7 +35,6 @@ namespace StatsForAge
 		GenderRange(const int min, const int max);
 		AgeRange GetMaleRange(void);
 		AgeRange GetFemaleRange(void);
-		~GenderRange(void);
 	private:
 		GenderRange(){}; //private default constructor - should not be used
 		AgeRange* maleRange_;
