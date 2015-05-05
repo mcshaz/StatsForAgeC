@@ -5,6 +5,9 @@ namespace StatsForAge
 	UKHeadCircumferenceData::UKHeadCircumferenceData(void) : CentileData(nullptr, nullptr, new GenderRange(new AgeRange(3, 216), new AgeRange(3, 204)))
 	{
 	}
+	UKHeadCircumferenceData::~UKHeadCircumferenceData(void){
+		delete ageMonthsRange_;
+	}
 	LMS UKHeadCircumferenceData::LMSForGestAge(int gestAgeWeeks, bool isMale) const
     {
         if (isMale)

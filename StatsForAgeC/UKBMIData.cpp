@@ -3,9 +3,12 @@
 #include "UKCentileImplementations.h"
 namespace StatsForAge
 {
-	UKBMIData::UKBMIData() : CentileData(&GenderRange(43, 43),nullptr,nullptr)
+	UKBMIData::UKBMIData() : CentileData(new GenderRange(43, 43),nullptr,nullptr)
     {
     }
+	UKBMIData::~UKBMIData() {
+		delete gestAgeRange_;
+	}
 	LMS UKBMIData::LMSForGestAge(int gestAgeWeeks, bool isMale) const
     {
         if (isMale)

@@ -5,9 +5,12 @@ namespace StatsForAge
     /// <summary>
     /// Length (or height for >2yo) in cm
     /// </summary>
-	UKLengthData::UKLengthData() : CentileData(&GenderRange(25, 43), nullptr, nullptr)
+	UKLengthData::UKLengthData() : CentileData(new GenderRange(25, 43), nullptr, nullptr)
     {
     }
+	UKLengthData::~UKLengthData() {
+		delete gestAgeRange_;
+	}
 	LMS UKLengthData::LMSForGestAge(int gestAgeWeeks, bool isMale) const
     {
         if (isMale)

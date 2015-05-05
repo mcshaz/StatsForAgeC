@@ -10,22 +10,30 @@ namespace StatsForAge
 	AgeRange GenderRange::GetMaleRange(void) { return *maleRange_; }
 	AgeRange GenderRange::GetFemaleRange(void) { return *femaleRange_; }
 
-	GenderRange::GenderRange(const int min, const int max){
-		maleRange_ = femaleRange_ = &AgeRange(min, max);
+	GenderRange::GenderRange(const int min, const int max) :iOwnRanges_(true) {
+		maleRange_ = femaleRange_ = new AgeRange(min, max);
 	}
-	GenderRange::GenderRange(AgeRange* maleRange, AgeRange* femaleRange){
+	GenderRange::GenderRange(AgeRange* maleRange, AgeRange* femaleRange) :iOwnRanges_(false) {
 		maleRange_ = maleRange;
 		femaleRange_ = femaleRange;
 	}
-
-	CentileData::~CentileData()
-	{
-		//these can be injected in, so we might not be the original instantiator of what we are deleting, however in its current form this will always work work
-		delete gestAgeRange_;
-		delete ageWeeksRange_;
-		delete ageMonthsRange_;
+	GenderRange::~GenderRange(void){
+		if (iOwnRanges_) {
+			delete maleRange_;
+		}
 	}
 
+	CentileData::~CentileData(void){
+		if (iOwnRange & 1){
+			delete gestAgeRange_;
+		}
+		if (iOwnRange & 2) {
+			delete ageWeeksRange_;
+		}
+		if (iOwnRange & 4) {
+			delete ageMonthsRange_;
+		}
+	}
 	void CentileData::SetThrowUnderRange(bool value){ throwUnderRange_ = value; }
 
 	double CentileData::CumSnormForAge(double value, double daysOfAge, bool isMale, double totalWeeksGestAtBirth) const

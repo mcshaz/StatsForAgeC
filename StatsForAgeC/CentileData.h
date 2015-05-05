@@ -2,7 +2,6 @@
 #define CentileData_included
 #include "LMS.h"
 
-
 namespace StatsForAge
 {
 	const int TermGestation = 40;
@@ -33,12 +32,14 @@ namespace StatsForAge
 	public:
 		GenderRange(AgeRange* maleRange, AgeRange* femaleRange);
 		GenderRange(const int min, const int max);
+		~GenderRange(void);
 		AgeRange GetMaleRange(void);
 		AgeRange GetFemaleRange(void);
 	private:
-		GenderRange(){}; //private default constructor - should not be used
+		GenderRange():iOwnRanges_(false){}; //private default constructor - should not be used
 		AgeRange* maleRange_;
 		AgeRange* femaleRange_;
+		const bool iOwnRanges_;
 		//do I need a destructor anywhere?
 	};
 
@@ -56,20 +57,23 @@ namespace StatsForAge
 
 	protected:
 		CentileData(GenderRange* gestAgeRange = nullptr, GenderRange* ageWeeksRange = nullptr, GenderRange* ageMonthsRange = nullptr) :
-			gestAgeRange_((gestAgeRange == nullptr) ? &GenderRange(23, 43) : gestAgeRange),
-			ageWeeksRange_((ageWeeksRange == nullptr) ? &GenderRange(4, 13) : gestAgeRange),
-			ageMonthsRange_((ageMonthsRange == nullptr) ? &GenderRange(3, 240) : gestAgeRange),
-			throwUnderRange_(false){};
+			gestAgeRange_((gestAgeRange == nullptr) ? new GenderRange(23, 43) : gestAgeRange),
+			ageWeeksRange_((ageWeeksRange == nullptr) ? new GenderRange(4, 13) : gestAgeRange),
+			ageMonthsRange_((ageMonthsRange == nullptr) ? new GenderRange(3, 240) : gestAgeRange),
+			throwUnderRange_(false){
+			iOwnRange = (gestAgeRange == nullptr) & (ageWeeksRange == nullptr) << 1 & (ageMonthsRange == nullptr) << 2;
+		};
 		~CentileData(void);
 		virtual LMS LMSForGestAge(int gestAgeWeeks, bool isMale) const=0;
 		virtual LMS LMSForAgeWeeks(int ageWeeks, bool isMale) const=0;
 		virtual LMS LMSForAgeMonths(int ageMonths, bool isMale) const=0;
-
-	private:
 		GenderRange* gestAgeRange_;
 		GenderRange* ageWeeksRange_;
 		GenderRange* ageMonthsRange_;
+
+	private:
 		bool throwUnderRange_;
+		int iOwnRange;
 	};
 }
 #endif

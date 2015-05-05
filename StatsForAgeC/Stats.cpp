@@ -8,8 +8,8 @@ namespace StatsForAge
 	{
 		double CumSnorm(double Zscore)
 		{
-			double returnVal, ZAbs;
-			ZAbs = abs(Zscore);
+			double returnVal;
+			double ZAbs = abs(Zscore);
 			if (ZAbs > 37)
 			{
 				return 0;

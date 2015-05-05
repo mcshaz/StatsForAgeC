@@ -20,6 +20,7 @@ namespace StatsForAge
 	{
 	public:
 		UKBMIData(void);
+		~UKBMIData(void);
 	protected:
 		LMS LMSForGestAge(int gestAgeWeeks, bool isMale) const;
 		LMS LMSForAgeWeeks(int ageWeeks, bool isMale) const;
@@ -30,6 +31,7 @@ namespace StatsForAge
 	{
 	public:
 		UKLengthData(void);
+		~UKLengthData(void);
 	protected:
 		LMS LMSForGestAge(int gestAgeWeeks, bool isMale) const;
 		LMS LMSForAgeWeeks(int ageWeeks, bool isMale) const;
@@ -40,6 +42,7 @@ namespace StatsForAge
 	{
 	public:
 		UKHeadCircumferenceData(void);
+		~UKHeadCircumferenceData(void);
 	protected:
 		LMS LMSForGestAge(int gestAgeWeeks, bool isMale) const;
 		LMS LMSForAgeWeeks(int ageWeeks, bool isMale) const;
