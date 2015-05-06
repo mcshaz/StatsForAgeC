@@ -1,4 +1,5 @@
-﻿#include "CentileData.h"
+﻿#include "stdafx.h"
+#include "CentileData.h"
 #include "LMS.h"
 #include <math.h>
 

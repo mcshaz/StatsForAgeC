@@ -3,8 +3,7 @@
 // are changed infrequently
 //
 
-#ifndef __StataAnthro_stdafx_H_included
-#define __StataAnthro_stdafx_H_included
+#pragma once
 
 #include "targetver.h"
 
@@ -15,4 +14,3 @@
 
 
 // TODO: reference additional headers your program requires here
-#endif

@@ -1,13 +1,16 @@
-// StataAnthropometry.cpp : Defines the exported functions for the DLL application.
+// ANthroStataLink.cpp : Defines the exported functions for the DLL application.
 //
-#include "stdafx.h"
-#include "stplugin.h"
-#include "..\StatsForAgeC\UKCentileImplementations.h"
 
+#include "stdafx.h"
+#include "AnthroStataLink.h"
+#include "..\StatsForAgeC\UKCentileImplementations.h"
+#include "stplugin.h"
 #include <sstream>
 
+using namespace StatsForAge;
+// This is an example of an exported variable
 STDLL stata_call(int argc, char *argv[]) {
-	using namespace StatsForAge;
+
 	if (SF_nvars() != 5) {
 		return 102;  	    // not enough variables specified
 	}
@@ -41,7 +44,7 @@ STDLL stata_call(int argc, char *argv[]) {
 
 	std::stringstream ss;
 	ss << argv[0] << " data is available from ";
-	if (statData->GetGestAgeRange().GetMaleRange().GetMin() == statData->GetGestAgeRange().GetFemaleRange().GetMin() &&  statData->GetAgeMonthsRange().GetMaleRange().GetMax() == statData->GetAgeMonthsRange().GetFemaleRange().GetMax())
+	if (statData->GetGestAgeRange().GetMaleRange().GetMin() == statData->GetGestAgeRange().GetFemaleRange().GetMin() && statData->GetAgeMonthsRange().GetMaleRange().GetMax() == statData->GetAgeMonthsRange().GetFemaleRange().GetMax())
 	{
 		ss << statData->GetGestAgeRange().GetMaleRange().GetMin() << " weeks gestation to " << statData->GetAgeMonthsRange().GetMaleRange().GetMax() / 12 << " years";
 	}
@@ -53,7 +56,7 @@ STDLL stata_call(int argc, char *argv[]) {
 	ss << " _newline Values within these ranges are interpolated, and outside calculated as per the closest datapoint.";
 
 	char* chr = _strdup(ss.str().c_str()); //heading into C code, accepting char* - i think manual memory management called for
-	SF_display(chr); 
+	SF_display(chr);
 	free(chr);
 
 	ST_int lastIn = SF_in2();
@@ -78,3 +81,4 @@ STDLL stata_call(int argc, char *argv[]) {
 	}
 	return 0;
 }
+

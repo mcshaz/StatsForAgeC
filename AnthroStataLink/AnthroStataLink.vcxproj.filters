@@ -27,18 +27,21 @@
     <ClInclude Include="stplugin.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="AnthroStataLink.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="StataAnthropometry.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="dllmain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="stplugin.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AnthroStataLink.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

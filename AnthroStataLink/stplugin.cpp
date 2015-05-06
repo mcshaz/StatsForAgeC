@@ -2,7 +2,7 @@
     stplugin.c, version 2.0
     copyright (c) 2003, 2006        			StataCorp
 */
-
+#include "stdafx.h"
 #include "stplugin.h"
 
 ST_plugin *_stata_ ;
