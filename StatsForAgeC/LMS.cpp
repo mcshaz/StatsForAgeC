@@ -1,6 +1,7 @@
 ﻿#include "stdafx.h"
 #include "LMS.h"
 #include "Stats.h"
+#include <iostream>
 
 namespace StatsForAge
 {
@@ -51,5 +52,14 @@ namespace StatsForAge
 
 	bool LMS::operator!= (const LMS &other) const{
 		return !(*this == other);
+	}
+
+	void LMS::Print(std::ostream &out) const{
+		out << "L:" << L << "M:" << M << "S:" << S;
+	}
+
+	std::ostream& operator<< (std::ostream& stream, const LMS& obj){
+		obj.Print(stream);
+		return stream;
 	}
 }

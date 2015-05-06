@@ -1,14 +1,13 @@
-﻿#include "stdafx.h"
-#include "CentileData.h"
-
+﻿#include "CentileData.h"
+#include "LMS.h"
 #include <math.h>
 
 namespace StatsForAge
 {
 	int AgeRange::GetMin(void) const { return min_; }
 	int AgeRange::GetMax(void) const { return max_; }
-	AgeRange GenderRange::GetMaleRange(void) { return *maleRange_; }
-	AgeRange GenderRange::GetFemaleRange(void) { return *femaleRange_; }
+	AgeRange& GenderRange::GetMaleRange(void) { return *maleRange_; }
+	AgeRange& GenderRange::GetFemaleRange(void) { return *femaleRange_; }
 
 	GenderRange::GenderRange(const int min, const int max) :iOwnRanges_(true) {
 		maleRange_ = femaleRange_ = new AgeRange(min, max);
@@ -34,6 +33,11 @@ namespace StatsForAge
 			delete ageMonthsRange_;
 		}
 	}
+
+	GenderRange& CentileData::GetGestAgeRange(void) const { return *gestAgeRange_; }
+	GenderRange& CentileData::GetAgeWeeksRange(void) const { return *ageWeeksRange_; }
+	GenderRange& CentileData::GetAgeMonthsRange(void) const { return *ageMonthsRange_; }
+
 	void CentileData::SetThrowUnderRange(bool value){ throwUnderRange_ = value; }
 
 	double CentileData::CumSnormForAge(double value, double daysOfAge, bool isMale, double totalWeeksGestAtBirth) const

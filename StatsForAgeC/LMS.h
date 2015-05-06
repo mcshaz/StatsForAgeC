@@ -1,8 +1,11 @@
-#ifndef LMS_included
-#define LMS_included
+#ifndef __LMS_H_included
+#define __LMS_H_included
+
+#include "stdafx.h"
+
 namespace StatsForAge
 {
-	struct LMS
+	struct STATSFORAGE_API LMS
 	{
 		double const L;
 		double const M;
@@ -26,6 +29,10 @@ namespace StatsForAge
 		bool operator== (const LMS &rhs) const;
 
 		bool operator!= (const LMS &rhs) const;
+
+		void Print(std::ostream& stream) const;
 	};
+
+	STATSFORAGE_API std::ostream& operator<< (std::ostream& stream, const LMS& obj);
 }
 #endif

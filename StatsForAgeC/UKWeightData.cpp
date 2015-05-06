@@ -1,6 +1,6 @@
 #include "stdafx.h"
+#include "LMS.h"
 #include "UKCentileImplementations.h"
-
 
 namespace StatsForAge{
 	LMS UKWeightData::LMSForGestAge(int gestAgeWeeks, bool isMale) const

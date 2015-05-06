@@ -3,7 +3,8 @@
 // are changed infrequently
 //
 
-#pragma once
+#ifndef __StatsForAgeC_stdafx_H_included
+#define __StatsForAgeC_stdafx_H_included
 
 #include "targetver.h"
 
@@ -17,4 +18,6 @@
 #else
 #define STATSFORAGE_API __declspec(dllimport)  
 #endif
+
 // TODO: reference additional headers your program requires here
+#endif

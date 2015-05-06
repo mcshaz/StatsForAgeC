@@ -1,12 +1,13 @@
-
 #include "stdafx.h"
+#include "LMS.h"
 #include "UKCentileImplementations.h"
+
 namespace StatsForAge
 {
-	UKBMIData::UKBMIData() : CentileData(new GenderRange(43, 43),nullptr,nullptr)
+	UKBMIData::UKBMIData(void) : CentileData(new GenderRange(43, 43),nullptr,nullptr)
     {
     }
-	UKBMIData::~UKBMIData() {
+	UKBMIData::~UKBMIData(void) {
 		delete gestAgeRange_;
 	}
 	LMS UKBMIData::LMSForGestAge(int gestAgeWeeks, bool isMale) const

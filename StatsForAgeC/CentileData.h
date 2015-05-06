@@ -1,9 +1,12 @@
-#ifndef CentileData_included
-#define CentileData_included
-#include "LMS.h"
+#ifndef __CentileData_H_included
+#define __CentileData_H_included
+
+#include "stdafx.h"
 
 namespace StatsForAge
 {
+	struct LMS;
+
 	const int TermGestation = 40;
 	const double DaysPerMonth = 365.25 / 12.0;
 	const double WeeksPerMonth = DaysPerMonth / 7.0;
@@ -22,7 +25,7 @@ namespace StatsForAge
 		int GetMin(void) const;
 		int GetMax(void) const;
 	private:
-		AgeRange() : min_(0), max_(0) {}; //private empty constructor - i.e. should not be used
+		AgeRange(void) : min_(0), max_(0) {}; //private empty constructor - i.e. should not be used
 		const int min_;
 		const int max_;
 	};
@@ -33,23 +36,21 @@ namespace StatsForAge
 		GenderRange(AgeRange* maleRange, AgeRange* femaleRange);
 		GenderRange(const int min, const int max);
 		~GenderRange(void);
-		AgeRange GetMaleRange(void);
-		AgeRange GetFemaleRange(void);
+		AgeRange& GetMaleRange(void);
+		AgeRange& GetFemaleRange(void);
 	private:
-		GenderRange():iOwnRanges_(false){}; //private default constructor - should not be used
+		GenderRange(void):iOwnRanges_(false){}; //private default constructor - should not be used
 		AgeRange* maleRange_;
 		AgeRange* femaleRange_;
 		const bool iOwnRanges_;
-		//do I need a destructor anywhere?
 	};
 
 	class STATSFORAGE_API CentileData
 	{
-
 	public:
-		GenderRange GetGestAgeRange(void) const;
-		GenderRange GetAgeWeeksRange(void) const;
-		GenderRange GetAgeMonthsRange(void) const;
+		GenderRange& GetGestAgeRange(void) const;
+		GenderRange& GetAgeWeeksRange(void) const;
+		GenderRange& GetAgeMonthsRange(void) const;
 		double CumSnormForAge(double value, double daysOfAge, bool isMale, double totalWeeksGestAtBirth = TermGestation) const;
 		double ZForAge(double value, double daysOfAge, bool isMale, double totalWeeksGestAtBirth = TermGestation) const;
 		LMS LMSForAge(double daysOfAge, bool isMale, double totalWeeksGestAtBirth = TermGestation) const;
@@ -58,8 +59,8 @@ namespace StatsForAge
 	protected:
 		CentileData(GenderRange* gestAgeRange = nullptr, GenderRange* ageWeeksRange = nullptr, GenderRange* ageMonthsRange = nullptr) :
 			gestAgeRange_((gestAgeRange == nullptr) ? new GenderRange(23, 43) : gestAgeRange),
-			ageWeeksRange_((ageWeeksRange == nullptr) ? new GenderRange(4, 13) : gestAgeRange),
-			ageMonthsRange_((ageMonthsRange == nullptr) ? new GenderRange(3, 240) : gestAgeRange),
+			ageWeeksRange_((ageWeeksRange == nullptr) ? new GenderRange(4, 13) : ageWeeksRange),
+			ageMonthsRange_((ageMonthsRange == nullptr) ? new GenderRange(3, 240) : ageMonthsRange),
 			throwUnderRange_(false){
 			iOwnRange = (gestAgeRange == nullptr) & (ageWeeksRange == nullptr) << 1 & (ageMonthsRange == nullptr) << 2;
 		};

@@ -1,10 +1,22 @@
+//=================================
+// include guard
+#ifndef __CENTILEIMPLEMETATION_H_INCLUDED__
+#define __CENTILEIMPLEMETATION_H_INCLUDED__
 
+//=================================
+// forward declared dependencies
+
+//=================================
+// included dependencies
 #include "stdafx.h"
-#include "LMS.h"
 #include "CentileData.h"
+
+//=================================
+// the actual class
 
 namespace StatsForAge
 {
+	struct LMS;
 	/// <summary>
 	/// centile data for weight in kg
 	/// </summary>
@@ -49,3 +61,4 @@ namespace StatsForAge
 		LMS LMSForAgeMonths(int ageMonths, bool isMale) const;
 	};
 }
+#endif

@@ -1,14 +1,16 @@
 #include "stdafx.h"
+#include "LMS.h"
 #include "UKCentileImplementations.h"
+
 namespace StatsForAge
 {
     /// <summary>
     /// Length (or height for >2yo) in cm
     /// </summary>
-	UKLengthData::UKLengthData() : CentileData(new GenderRange(25, 43), nullptr, nullptr)
+	UKLengthData::UKLengthData(void) : CentileData(new GenderRange(25, 43), nullptr, nullptr)
     {
     }
-	UKLengthData::~UKLengthData() {
+	UKLengthData::~UKLengthData(void) {
 		delete gestAgeRange_;
 	}
 	LMS UKLengthData::LMSForGestAge(int gestAgeWeeks, bool isMale) const

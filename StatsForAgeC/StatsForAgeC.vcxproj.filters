@@ -24,9 +24,6 @@
     <ClInclude Include="targetver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="StatsForAgeC.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="LMS.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -44,34 +41,29 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="StatsForAgeC.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="dllmain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="UKWeightData.cpp">
+    <ClCompile Include="Stats.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LMS.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CentileData.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="UKBMIData.cpp">
+    <ClCompile Include="UKWeightData.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="UKHeadCircumferenceData.cpp">
+    <ClCompile Include="UKBMIData.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="UKLengthData.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Stats.cpp">
+    <ClCompile Include="UKHeadCircumferenceData.cpp">
       <Filter>Source Files</Filter>
-    </None>
-    <None Include="LMS.cpp">
-      <Filter>Source Files</Filter>
-    </None>
+    </ClCompile>
   </ItemGroup>
 </Project>

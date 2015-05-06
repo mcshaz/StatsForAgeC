@@ -1,3 +1,6 @@
+#ifndef __STATS_H_included
+#define __STATS_H_included
+#include "stdafx.h"
 
 namespace StatsForAge
 {
@@ -25,3 +28,4 @@ namespace StatsForAge
 		double InverseCumSnorm(double p);
 	}
 }
+#endif
