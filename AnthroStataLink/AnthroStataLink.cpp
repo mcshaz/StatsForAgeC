@@ -73,10 +73,12 @@ STDLL stata_call(int argc, char *argv[]) {
 			rc = SF_vdata(4, j, &weeksGestationAtBirth);
 			if (rc) { return(rc); }
 
-			z = statData->ZForAge(weightInKg, daysOfAge, isMale != 0, weeksGestationAtBirth);
-			rc = SF_vstore(5, j, z);
-
-			if (rc) { return(rc); }
+			if (!(SF_is_missing(weightInKg) || SF_is_missing(daysOfAge) || SF_is_missing(isMale) || SF_is_missing(weeksGestationAtBirth))){
+				z = statData->ZForAge(weightInKg, daysOfAge, isMale != 0, weeksGestationAtBirth);
+				rc = SF_vstore(5, j, z);
+				if (rc) { return(rc); }
+			}
+			
 		}
 	}
 	return 0;
