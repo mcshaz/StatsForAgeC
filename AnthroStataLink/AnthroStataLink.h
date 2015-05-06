@@ -5,5 +5,9 @@
 // ANTHROSTATALINK_API functions as being imported from a DLL, whereas this DLL sees symbols
 // defined with this macro as being exported.
 #include "stplugin.h"
-
+#ifndef _stata_testlib_retint
+#define _stata_testlib_retint 999
+#endif
 STDLL stata_call(int argc, char *argv[]);
+
+STDLL stata_testlib(int argc);

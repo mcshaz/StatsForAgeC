@@ -12,9 +12,9 @@ inline void displayStataMsg_(const char* str){
 	free(out);
 }
 
-using namespace StatsForAge;
 // This is an example of an exported variable
 STDLL stata_call(int argc, char *argv[]) {
+	using namespace StatsForAge;
 	#define noOfOptions 5
 	if (SF_nvars() != noOfOptions) {
 		if (SF_nvars() < noOfOptions) { return 102; }	    // too few variables specified
@@ -96,3 +96,4 @@ STDLL stata_call(int argc, char *argv[]) {
 	return 0;
 }
 
+STDLL stata_testlib(int argc) { return _stata_testlib_retint; }
