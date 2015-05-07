@@ -50,7 +50,7 @@ namespace StatsForAge{
                 case 42:
                     return  LMS { 0.739, 3.8702, 0.12085 };
                 case 43:
-                    return  LMS { 244.2, 4.0603, 138.07 };
+                    return  LMS { 0.2442, 4.0603, 0.13807 };
                 default:
                     throw std::out_of_range("gestAgeWeeks");
             }

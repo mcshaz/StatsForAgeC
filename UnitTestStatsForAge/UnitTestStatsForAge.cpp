@@ -19,6 +19,11 @@ namespace UnitTestStatsForAge
 			Assert::AreEqual(23, wtData.GetGestAgeRange().GetMaleRange().GetMin(), L"Male Gestational Age wt Min changed on get");
 			Assert::AreEqual(wtData.GetAgeWeeksRange().GetMaleRange().GetMin(), wtData.GetAgeWeeksRange().GetMaleRange().GetMin(), L"Male wt AgeWeeks Min");
 			Assert::AreEqual(wtData.GetAgeMonthsRange().GetMaleRange().GetMin(), wtData.GetAgeMonthsRange().GetMaleRange().GetMin(), L"Male wt AgeMonths Min");
+			std::stringstream ss;
+			double z = wtData.ZForAge(4.51, 19, true, 40);
+			ss << "Z score for 4.51 kg male, ex-40 weeker:\n" << z << '\n';
+			Logger::WriteMessage(ss.str().c_str());
+			Assert::IsTrue(z > 0.0 && z < 2.0, L"Z score for 4.51 kg male, ex-40 weeker not between 1 and 2");
 
 			UKHeadCircumferenceData HCdata;
 			Assert::AreEqual(HCdata.GetGestAgeRange().GetMaleRange().GetMin(), HCdata.GetGestAgeRange().GetMaleRange().GetMin(), L"Male HC GestAge Min");
@@ -27,7 +32,7 @@ namespace UnitTestStatsForAge
 
 			LMS a = wtData.LMSForAge(365 * 20, true);
 			LMS b = wtData.LMSForAge(365 * 20, true);
-			std::stringstream ss;
+			ss.str(std::string());
 			ss << "compare:\n" << a << '\n' << b << '\n';
 			Logger::WriteMessage(ss.str().c_str());
 			
@@ -50,7 +55,7 @@ namespace UnitTestStatsForAge
 
 			CentileData* statData;
 			statData = new UKWeightData();
-			double z = statData->ZForAge(17, 365.0 * 4.0, false);
+			z = statData->ZForAge(17, 365.0 * 4.0, false);
 			ss.str(std::string());
 			ss << "centiledata(baseclass) from weight Z:\n" << z << '\n';
 			Logger::WriteMessage(ss.str().c_str());
