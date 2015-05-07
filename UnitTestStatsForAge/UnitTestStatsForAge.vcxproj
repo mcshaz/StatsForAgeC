@@ -161,13 +161,9 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="UnitTestStataLink.cpp" />
     <ClCompile Include="UnitTestStatsForAge.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ANthroStataLink\ANthroStataLink.vcxproj">
-      <Project>{4af1f7a0-8940-46f2-ab93-0aed8303629b}</Project>
-    </ProjectReference>
     <ProjectReference Include="..\StatsForAgeC\StatsForAgeC.vcxproj">
       <Project>{ccd8f5d9-f8cc-4469-9609-1f6d4659e0cb}</Project>
     </ProjectReference>

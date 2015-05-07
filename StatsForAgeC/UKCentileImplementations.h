@@ -23,9 +23,9 @@ namespace StatsForAge
 	class STATSFORAGE_API UKWeightData : public CentileData //final
 	{
 	protected:
-		LMS LMSForGestAge(int gestAgeWeeks, bool isMale) const;
-		LMS LMSForAgeWeeks(int ageWeeks, bool isMale) const;
-		LMS LMSForAgeMonths(int ageMonths, bool isMale) const;
+		LMS LMSForGestAge(int gestAgeWeeks, bool isMale) const override;
+		LMS LMSForAgeWeeks(int ageWeeks, bool isMale) const override;
+		LMS LMSForAgeMonths(int ageMonths, bool isMale) const override;
 	};
 
 	class STATSFORAGE_API UKBMIData : public CentileData //final
@@ -34,9 +34,9 @@ namespace StatsForAge
 		UKBMIData(void);
 		~UKBMIData(void);
 	protected:
-		LMS LMSForGestAge(int gestAgeWeeks, bool isMale) const;
-		LMS LMSForAgeWeeks(int ageWeeks, bool isMale) const;
-		LMS LMSForAgeMonths(int ageMonths, bool isMale) const;
+		LMS LMSForGestAge(int gestAgeWeeks, bool isMale) const override;
+		LMS LMSForAgeWeeks(int ageWeeks, bool isMale) const override;
+		LMS LMSForAgeMonths(int ageMonths, bool isMale) const override;
 	};
 
 	class STATSFORAGE_API UKLengthData : public CentileData //final
@@ -45,9 +45,9 @@ namespace StatsForAge
 		UKLengthData(void);
 		~UKLengthData(void);
 	protected:
-		LMS LMSForGestAge(int gestAgeWeeks, bool isMale) const;
-		LMS LMSForAgeWeeks(int ageWeeks, bool isMale) const;
-		LMS LMSForAgeMonths(int ageMonths, bool isMale) const;
+		LMS LMSForGestAge(int gestAgeWeeks, bool isMale) const override;
+		LMS LMSForAgeWeeks(int ageWeeks, bool isMale) const override;
+		LMS LMSForAgeMonths(int ageMonths, bool isMale) const override;
 	};
 
 	class STATSFORAGE_API UKHeadCircumferenceData : public CentileData //final
@@ -56,9 +56,9 @@ namespace StatsForAge
 		UKHeadCircumferenceData(void);
 		~UKHeadCircumferenceData(void);
 	protected:
-		LMS LMSForGestAge(int gestAgeWeeks, bool isMale) const;
-		LMS LMSForAgeWeeks(int ageWeeks, bool isMale) const;
-		LMS LMSForAgeMonths(int ageMonths, bool isMale) const;
+		LMS LMSForGestAge(int gestAgeWeeks, bool isMale) const override;
+		LMS LMSForAgeWeeks(int ageWeeks, bool isMale) const override;
+		LMS LMSForAgeMonths(int ageMonths, bool isMale) const override;
 	};
 }
 #endif

@@ -29,8 +29,5 @@
     <ClCompile Include="UnitTestStatsForAge.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="UnitTestStataLink.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
 </Project>

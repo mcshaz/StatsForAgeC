@@ -36,6 +36,9 @@
     <ClInclude Include="UKCentileImplementations.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\ANthroStataLink\stplugin.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -63,6 +66,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="UKHeadCircumferenceData.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ANthroStataLink\stplugin.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ANthroStataLink\AnthroStataLink.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -55,6 +55,7 @@ namespace StatsForAge
 		double ZForAge(double value, double daysOfAge, bool isMale, double totalWeeksGestAtBirth = TermGestation) const;
 		LMS LMSForAge(double daysOfAge, bool isMale, double totalWeeksGestAtBirth = TermGestation) const;
 		void SetThrowUnderRange(bool value);
+		~CentileData(void);
 
 	protected:
 		CentileData(GenderRange* gestAgeRange = nullptr, GenderRange* ageWeeksRange = nullptr, GenderRange* ageMonthsRange = nullptr) :
@@ -64,7 +65,6 @@ namespace StatsForAge
 			throwUnderRange_(false){
 			iOwnRange = (gestAgeRange == nullptr) & (ageWeeksRange == nullptr) << 1 & (ageMonthsRange == nullptr) << 2;
 		};
-		~CentileData(void);
 		virtual LMS LMSForGestAge(int gestAgeWeeks, bool isMale) const=0;
 		virtual LMS LMSForAgeWeeks(int ageWeeks, bool isMale) const=0;
 		virtual LMS LMSForAgeMonths(int ageMonths, bool isMale) const=0;

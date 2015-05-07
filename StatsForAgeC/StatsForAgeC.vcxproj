@@ -142,6 +142,7 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\ANthroStataLink\stplugin.h" />
     <ClInclude Include="CentileData.h" />
     <ClInclude Include="LMS.h" />
     <ClInclude Include="Stats.h" />
@@ -150,6 +151,8 @@
     <ClInclude Include="UKCentileImplementations.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\ANthroStataLink\AnthroStataLink.cpp" />
+    <ClCompile Include="..\ANthroStataLink\stplugin.cpp" />
     <ClCompile Include="CentileData.cpp" />
     <ClCompile Include="dllmain.cpp">
       <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</CompileAsManaged>

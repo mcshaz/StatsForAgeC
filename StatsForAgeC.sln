@@ -7,11 +7,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "StatsForAgeC", "StatsForAge
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UnitTestStatsForAge", "UnitTestStatsForAge\UnitTestStatsForAge.vcxproj", "{F7C53CAE-7C0F-4072-A46E-863DC09E8022}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AnthroStataLink", "ANthroStataLink\ANthroStataLink.vcxproj", "{4AF1F7A0-8940-46F2-AB93-0AED8303629B}"
-	ProjectSection(ProjectDependencies) = postProject
-		{CCD8F5D9-F8CC-4469-9609-1F6D4659E0CB} = {CCD8F5D9-F8CC-4469-9609-1F6D4659E0CB}
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -36,14 +31,6 @@ Global
 		{F7C53CAE-7C0F-4072-A46E-863DC09E8022}.Release|Win32.Build.0 = Release|Win32
 		{F7C53CAE-7C0F-4072-A46E-863DC09E8022}.Release|x64.ActiveCfg = Release|x64
 		{F7C53CAE-7C0F-4072-A46E-863DC09E8022}.Release|x64.Build.0 = Release|x64
-		{4AF1F7A0-8940-46F2-AB93-0AED8303629B}.Debug|Win32.ActiveCfg = Debug|Win32
-		{4AF1F7A0-8940-46F2-AB93-0AED8303629B}.Debug|Win32.Build.0 = Debug|Win32
-		{4AF1F7A0-8940-46F2-AB93-0AED8303629B}.Debug|x64.ActiveCfg = Debug|x64
-		{4AF1F7A0-8940-46F2-AB93-0AED8303629B}.Debug|x64.Build.0 = Debug|x64
-		{4AF1F7A0-8940-46F2-AB93-0AED8303629B}.Release|Win32.ActiveCfg = Release|Win32
-		{4AF1F7A0-8940-46F2-AB93-0AED8303629B}.Release|Win32.Build.0 = Release|Win32
-		{4AF1F7A0-8940-46F2-AB93-0AED8303629B}.Release|x64.ActiveCfg = Release|x64
-		{4AF1F7A0-8940-46F2-AB93-0AED8303629B}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
