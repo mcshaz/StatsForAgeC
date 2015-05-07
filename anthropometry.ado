@@ -1,7 +1,7 @@
 program anthropometry
 version 12.1
 
-syntax newvarname(generate) [if] [in], Value(varname numeric) Agedays(varname numeric) Male(varname numeric) [Gestationweeksatbirth(varname numeric) Length Weight Headcircumference BMI]
+syntax newvarname =/exp [if] [in], Agedays(varname numeric) Male(varname numeric) [Gestationweeksatbirth(varname numeric) Length Weight Headcircumference BMI]
 //double weightInKg, double daysOfAge, bool isMale, double totalWeeksGestAtBirth=TermGestation and returning returnVar
 if (c(os)!="Windows") {
 	di err "Not currently configured to work outside windows environment - please contact the author if you would like this ported to your platform" _newline as txt "Alternatively the open source c++ code is available on github if you have the software, skills and would like to compile it yourself"
@@ -9,7 +9,7 @@ if (c(os)!="Windows") {
 }
 /*
 if (c(bit)==32) {
-	capture program anthrostatalink, plugin using("AnthroStataLink.dll")
+	capture program anthrostatalink, plugin using("AnthroStataLink_win32.dll")
 }
 else {
 	capture program anthrostatalink, plugin using("StataAnthroLink_x64.dll")
@@ -40,7 +40,8 @@ if ("`gestationweeksatbirth'" == "") {
 	qui gen double `gestationweeksatbirth'=40
 }
 
-plugin call anthrostatalink `value' `agedays' `male' `gestationweeksatbirth' `varlist' `if' `in', `measure'
+qui gen float `varlist' = .
+plugin call anthrostatalink `exp' `agedays' `male' `gestationweeksatbirth' `varlist' `if' `in', `measure'
 
 end
 
