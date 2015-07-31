@@ -107,7 +107,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -124,7 +124,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -142,17 +142,17 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\ANthroStataLink\stplugin.h" />
+    <ClInclude Include="AnthroStataLink.h" />
     <ClInclude Include="CentileData.h" />
     <ClInclude Include="LMS.h" />
     <ClInclude Include="Stats.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="stplugin.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="UKCentileImplementations.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\ANthroStataLink\AnthroStataLink.cpp" />
-    <ClCompile Include="..\ANthroStataLink\stplugin.cpp" />
+    <ClCompile Include="AnthroStataLink.cpp" />
     <ClCompile Include="CentileData.cpp" />
     <ClCompile Include="dllmain.cpp">
       <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</CompileAsManaged>
@@ -176,6 +176,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="stplugin.cpp" />
     <ClCompile Include="UKBMIData.cpp" />
     <ClCompile Include="UKHeadCircumferenceData.cpp" />
     <ClCompile Include="UKLengthData.cpp" />
